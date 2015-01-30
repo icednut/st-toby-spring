@@ -1,9 +1,9 @@
 # TobySpringExample
 토비의 스피링 3.1 예제 소스 (개인 학습용)
 
-JDK 1.7
-Spring Framework 4.1.4.RELEASE
-Gradle 2.0
+- JDK 1.7
+- Spring Framework 4.1.4.RELEASE
+- Gradle 2.0
 
 # 사전 준비
 1. 로컬 환경에 H2 Database 설치
