@@ -1,0 +1,63 @@
+configure(subprojects) {
+    apply plugin: 'java'
+
+    sourceCompatibility = 1.5
+    version = '1.0'
+
+    sourceSets {
+        main {
+            java {
+                srcDir 'src/main/java'
+            }
+            resources {
+                srcDir 'src/main/resources'
+            }
+        }
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        testCompile group: 'junit', name: 'junit', version: '4.11'
+        compile 'com.h2database:h2:1.4.185'
+        compile 'org.springframework:spring-context:4.1.4.RELEASE'
+        compile 'org.springframework:spring-core:4.1.4.RELEASE'
+        compile 'org.springframework:spring-beans:4.1.4.RELEASE'
+        compile 'org.springframework:spring-jdbc:4.1.4.RELEASE'
+    }
+}
+
+project(":Chapter_01-1") {
+}
+
+project(":Chapter_01-2") {
+}
+
+project(":Chapter_01-8") {
+}
+
+project(":Chapter_03-1") {
+}
+
+project(":Chapter_03-2") {
+}
+
+project(":Chapter_03-3") {
+}
+
+project(":Chapter_03-4") {
+}
+
+project(":Chapter_03-5") {
+}
+
+project(":Chapter_03-5") {
+}
+
+project(":TemplateCallbackPattern") {
+}
+
+project(":Chapter_03-6") {
+}
