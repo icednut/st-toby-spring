@@ -61,3 +61,6 @@ project(":TemplateCallbackPattern") {
 
 project(":Chapter_03-6") {
 }
+
+project(":Chapter_04-1") {
+}
