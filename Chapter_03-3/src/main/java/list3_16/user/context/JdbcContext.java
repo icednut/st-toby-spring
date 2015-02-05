@@ -64,7 +64,6 @@ public class JdbcContext {
 			}
 		}
 
-		StatementStrategy st = new AddStatement(user);
-		jdbcContextWithStatementStrategy(st);
+		jdbcContextWithStatementStrategy(new AddStatement(user));
 	}
 }
