@@ -24,7 +24,12 @@ public class UserDaoTest {
 	}
 
 	@Test
-	public void testGetAll() throws Exception {
+	public void testDeleteAll() {
+		userDao.deleteAll();
+	}
+
+	@Test
+	public void testGetAll() {
 		// given
 		User givenUser1 = getUser1();
 		User givenUser2 = getUser2();
