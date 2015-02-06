@@ -26,6 +26,7 @@ configure(subprojects) {
         compile 'org.springframework:spring-core:4.1.4.RELEASE'
         compile 'org.springframework:spring-beans:4.1.4.RELEASE'
         compile 'org.springframework:spring-jdbc:4.1.4.RELEASE'
+        compile 'org.springframework:spring-test:4.1.4.RELEASE'
     }
 }
 
@@ -62,5 +63,5 @@ project(":TemplateCallbackPattern") {
 project(":Chapter_03-6") {
 }
 
-project(":Chapter_04-1") {
+project(":Chapter_04") {
 }
