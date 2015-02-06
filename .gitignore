@@ -1,4 +1,16 @@
 .DS_Store
 .gradle/
 .idea/
+Chapter_01-1/build/
+Chapter_01-2/build/
+Chapter_01-8/build/
+Chapter_03-1/build/
+Chapter_03-2/build/
+Chapter_03-3/build/
+Chapter_03-4/build/
+Chapter_03-5/build/
+Chapter_03-6/build/
+Chapter_04/build/
+
 *.iml
+*.class
