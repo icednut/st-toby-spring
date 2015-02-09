@@ -1,23 +1,15 @@
 rootProject.name = 'TobySpringExample'
 
 include 'Chapter_01-1'
-
 include 'Chapter_01-2'
-
 include 'Chapter_01-8'
-
 include 'Chapter_03-1'
 include 'Chapter_03-2'
-
 include 'Chapter_03-3'
-
 include 'Chapter_03-4'
-
 include 'Chapter_03-5'
-
 include 'TemplateCallbackPattern'
-
 include 'Chapter_03-6'
-
 include 'Chapter_04'
+include 'Chapter_05-1'
 
