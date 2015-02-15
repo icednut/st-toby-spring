@@ -1,14 +1,14 @@
-package list5_1.user.dao;
+package list5_41.user.dao;
 
-import list5_1.user.config.AppConfig;
-import list5_1.user.domain.Level;
-import list5_1.user.domain.User;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import list5_41.user.config.AppConfig;
+import list5_41.user.domain.Level;
+import list5_41.user.domain.User;
 
 import java.util.List;
 

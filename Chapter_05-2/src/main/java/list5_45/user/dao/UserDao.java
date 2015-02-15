@@ -1,7 +1,6 @@
-package list5_1.user.dao;
+package list5_45.user.dao;
 
-
-import list5_1.user.domain.User;
+import list5_45.user.domain.User;
 
 import java.util.List;
 

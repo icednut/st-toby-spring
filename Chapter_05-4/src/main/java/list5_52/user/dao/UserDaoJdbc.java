@@ -1,7 +1,7 @@
-package list5_1.user.dao;
+package list5_52.user.dao;
 
-import list5_1.user.domain.Level;
-import list5_1.user.domain.User;
+import list5_52.user.domain.Level;
+import list5_52.user.domain.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -25,6 +25,7 @@ public class UserDaoJdbc implements UserDao {
 			user.setLevel(Level.valueOf(rs.getInt("level")));
 			user.setLogin(rs.getInt("login"));
 			user.setRecommend(rs.getInt("recommend"));
+			user.setEmail(rs.getString("email"));
 			return user;
 		}
 	};
@@ -35,7 +36,7 @@ public class UserDaoJdbc implements UserDao {
 
 	@Override
 	public void add(User user) {
-		this.jdbcTemplate.update("insert into users(id, name, password, level, login, recommend) values (?, ?, ?, ?, ?, ?)", user.getId(), user.getName(), user.getPassword(), user.getLevel().intValue(), user.getLogin(), user.getRecommend());
+		this.jdbcTemplate.update("insert into users(id, name, password, level, login, recommend, email) values (?, ?, ?, ?, ?, ?, ?)", user.getId(), user.getName(), user.getPassword(), user.getLevel().intValue(), user.getLogin(), user.getRecommend(), user.getEmail());
 	}
 
 	@Override

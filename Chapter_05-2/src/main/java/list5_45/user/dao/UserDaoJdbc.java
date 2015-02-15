@@ -1,7 +1,7 @@
-package list5_1.user.dao;
+package list5_45.user.dao;
 
-import list5_1.user.domain.Level;
-import list5_1.user.domain.User;
+import list5_45.user.domain.Level;
+import list5_45.user.domain.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 

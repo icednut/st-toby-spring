@@ -1,4 +1,4 @@
-package common.user.domain;
+package list5_23.user.domain;
 
 /**
  * @author wglee21g@gmail.com
@@ -10,7 +10,7 @@ public class User {
 	private Level level;
 	private int login;
 	private int recommend;
-	
+
 	public User() {
 	}
 
@@ -69,5 +69,15 @@ public class User {
 
 	public void setRecommend(int recommend) {
 		this.recommend = recommend;
+	}
+	
+	public void upgradeLevel() {
+		Level nextLevel = this.level.nextLevel();
+		
+		if (nextLevel == null) {
+			throw new IllegalStateException(this.level + "은 업그레이드가 불가능합니다.");
+		} else {
+			this.level = nextLevel;
+		}
 	}
 }

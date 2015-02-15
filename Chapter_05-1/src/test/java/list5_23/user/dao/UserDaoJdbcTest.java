@@ -1,8 +1,8 @@
-package list5_1.user.dao;
+package list5_23.user.dao;
 
-import list5_1.user.config.AppConfig;
-import list5_1.user.domain.Level;
-import list5_1.user.domain.User;
+import list5_23.user.config.AppConfig;
+import list5_23.user.domain.Level;
+import list5_23.user.domain.User;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

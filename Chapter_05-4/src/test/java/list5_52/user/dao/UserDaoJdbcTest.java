@@ -1,8 +1,8 @@
-package list5_1.user.dao;
+package list5_52.user.dao;
 
-import list5_1.user.config.AppConfig;
-import list5_1.user.domain.Level;
-import list5_1.user.domain.User;
+import list5_52.user.config.AppConfig;
+import list5_52.user.domain.Level;
+import list5_52.user.domain.User;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,17 +21,18 @@ import static org.junit.Assert.assertThat;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = AppConfig.class)
 public class UserDaoJdbcTest {
-	@Autowired
-	private UserDao userDao;
 	private User user1;
 	private User user2;
 	private User user3;
 
+	@Autowired
+	private UserDao userDao;
+
 	@Before
 	public void setUp() {
-		this.user1 = new User("gyumee", "박성철", "springno1", Level.BASIC, 1, 0);
-		this.user2 = new User("leegw700", "이길원", "springno2", Level.SILVER, 55, 10);
-		this.user3 = new User("bumjin", "박범진", "springno3", Level.GOLD, 100, 40);
+		this.user1 = new User("gyumee", "박성철", "springno1", Level.BASIC, 1, 0, "gyumee@test.com");
+		this.user2 = new User("leegw700", "이길원", "springno2", Level.SILVER, 55, 10, "leegw700@test.com");
+		this.user3 = new User("bumjin", "박범진", "springno3", Level.GOLD, 100, 40, "bumjin@test.com");
 	}
 
 	@Test

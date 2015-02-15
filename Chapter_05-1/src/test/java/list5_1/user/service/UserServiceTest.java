@@ -1,9 +1,9 @@
 package list5_1.user.service;
 
-import common.user.domain.Level;
-import common.user.domain.User;
 import list5_1.user.config.AppConfig;
 import list5_1.user.dao.UserDao;
+import list5_1.user.domain.Level;
+import list5_1.user.domain.User;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,7 +16,7 @@ import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 /**
  * @author wglee21g@gmail.com
@@ -35,11 +35,11 @@ public class UserServiceTest {
 	@Before
 	public void setUp() throws Exception {
 		users = Arrays.asList(
-			new User("bumjin", "박범진", "p1", Level.BASIC, 49, 0),
-			new User("joytouch", "강명성", "p1", Level.BASIC, 50, 0),
-			new User("erwins", "신승한", "p1", Level.SILVER, 60, 29),
-			new User("madnite1", "이상호", "p1", Level.SILVER, 60, 30),
-			new User("green", "오민규", "p1", Level.GOLD, 100, 100)
+				new User("bumjin", "박범진", "p1", Level.BASIC, 49, 0),
+				new User("joytouch", "강명성", "p1", Level.BASIC, 50, 0),
+				new User("erwins", "신승한", "p1", Level.SILVER, 60, 29),
+				new User("madnite1", "이상호", "p1", Level.SILVER, 60, 30),
+				new User("green", "오민규", "p1", Level.GOLD, 100, 100)
 		);
 	}
 
@@ -55,7 +55,7 @@ public class UserServiceTest {
 		for (User user : users) {
 			userDao.add(user);
 		}
-		
+
 		userService.upgradeLevels();
 
 		checkLevel(users.get(0), Level.BASIC);
@@ -72,13 +72,13 @@ public class UserServiceTest {
 		User userWithLevel = users.get(4);
 		User userWithoutLevel = users.get(0);
 		userWithoutLevel.setLevel(null);
-		
+
 		userService.add(userWithLevel);
 		userService.add(userWithoutLevel);
 
 		User userWithLevelRead = userDao.get(userWithLevel.getId());
 		User userWithoutLevelRead = userDao.get(userWithoutLevel.getId());
-		
+
 		assertThat(userWithLevelRead.getLevel(), is(userWithLevel.getLevel()));
 		assertThat(userWithoutLevelRead.getLevel(), is(Level.BASIC));
 	}

@@ -1,8 +1,8 @@
 package list5_1.user.service;
 
-import common.user.domain.Level;
-import common.user.domain.User;
 import list5_1.user.dao.UserDao;
+import list5_1.user.domain.Level;
+import list5_1.user.domain.User;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public class UserService {
 	public void setUserDao(UserDao userDao) {
 		this.userDao = userDao;
 	}
-	
+
 	public void upgradeLevels() {
 		List<User> users = userDao.getAll();
 
@@ -37,7 +37,7 @@ public class UserService {
 			} else {
 				changed = false;
 			}
-			
+
 			if (changed) {
 				userDao.update(user);
 			}
@@ -48,7 +48,7 @@ public class UserService {
 		if (user.getLevel() == null) {
 			user.setLevel(Level.BASIC);
 		}
-		
+
 		userDao.add(user);
 	}
 }
