@@ -67,10 +67,10 @@ public class UserServiceTest {
 		} catch (TestUserServiceException e) {
 		}
 
-//		checkLevel(users.get(1), false);
+//		checkLevelUpgraded(users.get(1), false);
 	}
 
-	private void checkLevel(User user, boolean upgraded) {
+	private void checkLevelUpgraded(User user, boolean upgraded) {
 		User userUpdate = userDao.get(user.getId());
 
 		if (upgraded) {

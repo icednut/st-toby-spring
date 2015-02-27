@@ -1,9 +1,11 @@
-package list6_1.user.config;
+package list6_4.user.config;
 
-import list6_1.user.dao.UserDao;
-import list6_1.user.dao.UserDaoJdbc;
-import list6_1.user.service.DummyMailSender;
-import list6_1.user.service.UserService;
+import list6_4.user.dao.UserDao;
+import list6_4.user.dao.UserDaoJdbc;
+import list6_4.user.service.DummyMailSender;
+import list6_4.user.service.UserService;
+import list6_4.user.service.UserServiceImpl;
+import list6_4.user.service.UserServiceTx;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -39,12 +41,19 @@ public class AppConfig {
 	}
 
 	@Bean
-	public UserService userService(UserDao userDao, DataSource dataSource, PlatformTransactionManager transactionManager, MailSender mailSender) {
-		UserService userService = new UserService();
+	public UserServiceTx userService(PlatformTransactionManager transactionManager, UserService userServiceImpl) {
+		UserServiceTx userService = new UserServiceTx();
+
+		userService.setUserService(userServiceImpl);
+		userService.setTransactionManager(transactionManager);
+		return userService;
+	}
+	
+	@Bean
+	public UserService userServiceImpl(UserDao userDao, DummyMailSender mailSender) {
+		UserServiceImpl userService = new UserServiceImpl();
 
 		userService.setUserDao(userDao);
-		userService.setDataSource(dataSource);
-		userService.setTransactionManager(transactionManager);
 		userService.setMailSender(mailSender);
 		return userService;
 	}

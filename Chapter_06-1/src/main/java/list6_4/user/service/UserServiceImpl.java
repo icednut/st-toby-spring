@@ -1,27 +1,20 @@
-package list6_1.user.service;
+package list6_4.user.service;
 
-import list6_1.user.dao.UserDao;
-import list6_1.user.domain.Level;
-import list6_1.user.domain.User;
+import list6_4.user.dao.UserDao;
+import list6_4.user.domain.Level;
+import list6_4.user.domain.User;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.support.DefaultTransactionDefinition;
 
-import javax.sql.DataSource;
-import java.sql.SQLException;
 import java.util.List;
 
 /**
  * @author wglee21g@gmail.com
  */
-public class UserService {
+public class UserServiceImpl implements UserService {
 	public static final int MIN_LOGCOUNT_FOR_SILVER = 50;
 	public static final int MIN_RECOMMEND_FOR_GOLD = 30;
 	private UserDao userDao;
-	private DataSource dataSource;
-	private PlatformTransactionManager transactionManager;
 	private MailSender mailSender;
 
 	public void setMailSender(MailSender mailSender) {
@@ -32,42 +25,23 @@ public class UserService {
 		this.userDao = userDao;
 	}
 
-	public void setDataSource(DataSource dataSource) {
-		this.dataSource = dataSource;
-	}
-
-	public void setTransactionManager(PlatformTransactionManager transactionManager) {
-		this.transactionManager = transactionManager;
-	}
-
-	public void upgradeLevels() throws SQLException {
-		TransactionStatus status = transactionManager.getTransaction(new DefaultTransactionDefinition());
-
-		try {
-
-			upgradeLevelsInternal();
-			transactionManager.commit(status);
-		} catch (RuntimeException e) {
-			transactionManager.rollback(status);
-			throw e;
-		}
-	}
-
-	private void upgradeLevelsInternal() {
-		List<User> users = userDao.getAll();
-		for (User user : users) {
-			if (canUpgradeLevel(user)) {
-				upgradeLevel(user);
-			}
-		}
-	}
-
+	@Override
 	public void add(User user) {
 		if (user.getLevel() == null) {
 			user.setLevel(Level.BASIC);
 		}
 
 		userDao.add(user);
+	}
+
+	@Override
+	public void upgradeLevels() {
+		List<User> users = userDao.getAll();
+		for (User user : users) {
+			if (canUpgradeLevel(user)) {
+				upgradeLevel(user);
+			}
+		}
 	}
 
 	private boolean canUpgradeLevel(User user) {

@@ -1,4 +1,4 @@
-package list6_1.user.service;
+package list6_4.user.service;
 
 import org.springframework.mail.MailException;
 import org.springframework.mail.MailSender;

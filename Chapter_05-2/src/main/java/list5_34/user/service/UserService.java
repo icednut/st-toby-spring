@@ -1,8 +1,8 @@
-package list5_23.user.service;
+package list5_34.user.service;
 
-import list5_23.user.dao.UserDao;
-import list5_23.user.domain.Level;
-import list5_23.user.domain.User;
+import list5_34.user.dao.UserDao;
+import list5_34.user.domain.Level;
+import list5_34.user.domain.User;
 
 import java.util.List;
 
@@ -51,7 +51,7 @@ public class UserService {
 		}
 	}
 
-	private void upgradeLevel(User user) {
+	protected void upgradeLevel(User user) {
 		user.upgradeLevel();
 		userDao.update(user);
 	}

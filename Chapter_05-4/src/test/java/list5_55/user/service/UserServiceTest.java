@@ -10,7 +10,9 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.PlatformTransactionManager;
 
+import javax.sql.DataSource;
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,6 +20,7 @@ import static list5_55.user.service.UserService.MIN_LOGCOUNT_FOR_SILVER;
 import static list5_55.user.service.UserService.MIN_RECOMMEND_FOR_GOLD;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 
 /**
  * @author wglee21g@gmail.com
@@ -33,6 +36,9 @@ public class UserServiceTest {
 	@Autowired
 	private UserDao userDao;
 
+	@Autowired
+	private PlatformTransactionManager transactionManager;
+
 	@Before
 	public void setUp() throws Exception {
 		users = Arrays.asList(
@@ -46,24 +52,53 @@ public class UserServiceTest {
 
 	@Test
 	public void upgradeAllOrNothing() throws Exception {
+		UserService testUserService = new TestUserService(users.get(3).getId());
+		testUserService.setUserDao(this.userDao);
+		testUserService.setTransactionManager(transactionManager);
 		userDao.deleteAll();
 
 		for (User user : users) {
 			userDao.add(user);
 		}
-
-		userService.upgradeLevels();
-
-//		checkLevel(users.get(1), false);
+		
+		try {
+			userService.upgradeLevels();
+		} catch (TestUserServiceException e) {
+		}
+		
+		checkLevelUpgraded(users.get(0), false);
+		checkLevelUpgraded(users.get(1), true);
+		checkLevelUpgraded(users.get(2), false);
+		checkLevelUpgraded(users.get(3), true);
+		checkLevelUpgraded(users.get(4), false);
 	}
 
-	private void checkLevel(User user, boolean upgraded) {
+	private void checkLevelUpgraded(User user, boolean upgraded) {
 		User userUpdate = userDao.get(user.getId());
-
+		
 		if (upgraded) {
 			assertThat(userUpdate.getLevel(), is(user.getLevel().nextLevel()));
 		} else {
 			assertThat(userUpdate.getLevel(), is(user.getLevel()));
 		}
+	}
+
+	static class TestUserService extends UserService {
+		private String id;
+
+		private TestUserService(String id) {
+			this.id = id;
+		}
+
+		protected void upgradeLevel(User user) {
+			if (user.getId().equals(this.id)) {
+				throw new TestUserServiceException();
+			}
+			super.upgradeLevel(user);
+		}
+
+	}
+
+	static class TestUserServiceException extends RuntimeException {
 	}
 }
